@@ -1,0 +1,174 @@
+*, ::after, ::before{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(64, 64, 64);
+    transition: background-color 2s linear;
+}
+
+h1{
+    font-size: 2.3rem;
+    margin-bottom: 24px;
+}
+
+h2{
+    font-size: 2rem;
+}
+
+@keyframes container_apparition {
+    from{
+        transform: scale(0);
+        opacity: 0.3;
+    }
+    to{
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+#container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    height: 90%;
+    background-color: rgb(241, 241, 241);
+    border-radius: 12px;
+    text-align: center;
+    animation: container_apparition 2s ease-in-out;
+}
+
+#containerInput, #containerWeather{
+    width: 33%;
+    min-width: 280px;
+    text-align: center;
+}
+
+#containerWeather{
+    font-size: 1.3rem;
+}
+
+#containerInput form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#containerInput form input{
+    width: 90%;
+    height: 48px;
+    margin: 12px;
+    background-color: rgb(224, 224, 224);
+    font-size: 1.2rem;
+    border: 2px solid rgb(90, 90, 90);
+    border-radius: 5px;
+    padding: 3px;
+    outline: none;
+}
+
+#containerInput form button{
+    width: 55%;
+    height: 46px;
+    background-color: rgb(224, 224, 224);
+    font-size: 1.2rem;
+    border: 2px solid rgb(90, 90, 90);
+    outline: none;
+    border-radius: 5px;
+}
+
+/* classes pour le logo */
+#logo{
+    width: 128px;
+    height: 128px;
+    margin: 16px auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.sun{
+    background-image: url('images/sun.png');
+}
+
+.cloud{
+    background-image: url('images/cloud.png');
+}
+
+.rain{
+    background-image: url('images/rain.png');
+}
+
+.wind{
+    background-image: url('images/wind.png');
+}
+
+.sun-cloud{
+    background-image: url('images/sunCloud.png');
+}
+
+.storm{
+    background-image: url('images/storm.png');
+}
+
+.snow{
+    background-image: url('images/snow.png');
+}
+
+.mist{
+    background-image: url('images/mist.png');
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 720px) {
+    h1{
+        font-size: 2rem;
+    }
+
+    h2{
+        font-size: 1.8rem;
+    }
+
+    #containerWeather{
+        font-size: 1.3rem;
+    }
+
+    #containerInput form input{
+        font-size: 1rem;
+    }
+    
+    #containerInput form button{
+        width: 60%;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 420px){
+    h1{
+        font-size: 1.8rem;
+    }
+
+    h2{
+        font-size: 1rem;
+    }
+
+    #container{
+        width: 90%;
+    }
+
+    #logo{
+        width: 96px;
+        height: 96px;
+    }
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <title>Météo</title>
+</head>
+<body>
+    <div id="container">
+        <div id="containerWeather">
+            <h1>Météo actuelle</h1>
+            <h2 id="cityDisplay"></h2>
+            <div id="logo" class=""></div>
+            <p id="tempDisplay"></p>
+            <p id="humidityDisplay"></p>
+            <br>
+            <p id="sunriseDisplay"></p>
+            <p id="sunsetDisplay"></p>
+        </div>
+        <div id="containerInput">
+            <form>
+                <input type="text" name="newCity" id="newCityInput">
+                <button type="submit" id="submitBtn">Changer la ville</button>
+            </form>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
