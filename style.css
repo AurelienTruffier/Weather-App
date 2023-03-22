@@ -131,13 +131,13 @@ h2{
 
 /* RESPONSIVE */
 
-@media (max-width: 720px) {
+@media (max-width: 800px) {
     h1{
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     h2{
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
 
     #containerWeather{
@@ -170,5 +170,31 @@ h2{
     #logo{
         width: 96px;
         height: 96px;
+    }
+}
+
+@media (max-height: 560px){
+    #container{
+        height: 92%;
+        line-height: 1.5rem;
+    }
+
+    #logo{
+        width: 48px;
+        height: 48px;
+    }
+
+    h1{
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-height: 500px){
+    #container{
+        height: 96%;
+    }
+
+    h1{
+        margin-bottom: 0;
     }
 }

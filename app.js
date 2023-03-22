@@ -8,26 +8,58 @@ const sunColor = "rgb(0,191,255)";
 const cloudColor = "rgb(173,216,230)";
 const rainColor = "rgb(147, 167, 173)";
 
-let actualCity = '';
+//éléments d'affichages
+const cityDisplay = document.getElementById("cityDisplay");
+const tempDisplay = document.getElementById("tempDisplay");
+const humidityDisplay = document.getElementById("humidityDisplay");
+const sunriseDisplay = document.getElementById("sunriseDisplay");
+const sunsetDisplay = document.getElementById("sunsetDisplay");
 
-submitBtn.addEventListener('click', updateCity);
+//fonction à appeler pour cacher tous les éléments d'affichage
+function hideWeather(){
+    logo.style.display = 'none';
+    tempDisplay.style.display = 'none';
+    humidityDisplay.style.display = 'none';
+    sunriseDisplay.style.display = 'none';
+    sunsetDisplay.style.display = 'none';
+}
 
-document.getElementById("cityDisplay").textContent= "Saisissez une ville";
+//fonction à appeler pour réafficher tous les éléments d'affichage
+function showWeather(){
+    logo.style.display = 'block';
+    tempDisplay.style.display = 'block';
+    humidityDisplay.style.display = 'block';
+    sunriseDisplay.style.display = 'block';
+    sunsetDisplay.style.display = 'block';
+}
 
-function updateCity(){
-    document.getElementById("cityDisplay").innerHTML = `Pour <span id="cityName">...</span>`;
+//cache les éléments au lancement de l'app
+hideWeather();
+
+let actualCity = null;
+
+submitBtn.addEventListener('click', getWeather);
+
+cityDisplay.textContent= "Saisissez une ville";
+
+//fonction à appeler lors de l'envoi du formulaire pour afficher la météo d'une nouvelle ville
+function getWeather(){
+    cityDisplay.innerHTML = `Pour <span id="cityName">...</span>`;
     let newCity = cityInput.value;
     actualCity = newCity;
     let url = 'https://api.openweathermap.org/data/2.5/weather?q=' + actualCity + '&appid=APIKEY&units=metric';
     fetch(url).then(response => response.json()).then(data => {
+        //affiche les éléments d'affichage qui contiendront la météo
+        showWeather();
+        //remplit le span crée dynamiquement au début de la fonction
         document.getElementById("cityName").textContent= data.name;
-        document.getElementById("tempDisplay").textContent= `${data.main.temp} °C`;
-        document.getElementById("humidityDisplay").textContent= `${data.main.humidity} % d'humidité`;
+        tempDisplay.textContent= `${data.main.temp} °C`;
+        humidityDisplay.textContent= `${data.main.humidity} % d'humidité`;
         //convertit les dates de timestamp vers un String
         let sunrise = new Date(data.sys.sunrise * 1000).toLocaleTimeString();
         let sunset = new Date(data.sys.sunset * 1000).toLocaleTimeString();
-        document.getElementById("sunriseDisplay").textContent= `🌄 ${sunrise}`;
-        document.getElementById("sunsetDisplay").textContent= `🌇 ${sunset}`;
+        sunriseDisplay.textContent= `🌄 ${sunrise}`;
+        sunsetDisplay.textContent= `🌇 ${sunset}`;
         //enlève toutes les classes de l'élément logo
         logo.classList.remove(...logo.classList);
         //selon la météo on change l'icône affiché et la couleur du background de l'app
@@ -109,9 +141,11 @@ function updateCity(){
     //en cas d'erreur lors de l'exécution de la requête
     .catch(
         () => {
-            document.getElementById("cityDisplay").innerHTML = `Une erreur est survenue, veuillez réessayer !`;
+            //on cache les éléments d'affichages
+            hideWeather();
+            cityDisplay.innerHTML = `Une erreur est survenue, veuillez réessayer !`;
         }
     );
-    //pour empêcher le formulaire d'envoyer des requêtes avec get et recharger la page
+    //pour empêcher le formulaire de recharger la page
     event.preventDefault();
 }
